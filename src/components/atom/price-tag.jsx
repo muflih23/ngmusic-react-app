@@ -17,7 +17,7 @@ function PriceTag({
             />
             <RegularText 
                 className={`font-bold text-yellow text-[12px] lg:text-[1rem] tracking-[.43px]`}
-                text={price}
+                text={price ?? 'Free'}
             />
         </FlexRow>
     )
