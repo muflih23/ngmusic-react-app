@@ -60,11 +60,13 @@ function ResultGroup({
                             )
                         }
                     </>
-                ) : (
+                ) : searchResults.count < 1 && !loading ? (
                     <RegularText 
                         className={`text-center text-[14px] lg:text-[18px] text-textBlack font-medium`}
                         text={`No result found, please try another keyword`}
                     />
+                ) : (
+                    null
                 )
             }
         </div>
