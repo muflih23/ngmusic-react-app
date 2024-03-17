@@ -1,25 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
+import { Suspense } from 'react';
+import { Spin } from 'antd';
+import { Route, Routes } from 'react-router-dom';
+import routes from './routes';
+import PageLayout from './components/organism/layout';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    return (
+        <Suspense
+            fallback={
+                <div
+                    className='w-screen h-screen flex justify-center items-center'
+                >
+                    <Spin 
+                        size='default'
+                    />
+                </div>
+            }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+            <Routes>
+                {routes.map((el, idx) => (
+                    el?.useLayout === true ? (
+                        <Route 
+                            key={idx}
+                            path={el?.path}
+                            element={
+                                <PageLayout>
+                                    <el.element />
+                                </PageLayout>
+                            }
+                        />
+                    ) : (
+                        <Route 
+                            key={idx}
+                            path={el?.path}
+                            element={
+                                <el.element />
+                            }
+                        />
+                    )
+                ))}
+            </Routes>
+        </Suspense>
+    );
 }
 
 export default App;
