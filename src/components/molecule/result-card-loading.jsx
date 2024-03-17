@@ -31,7 +31,6 @@ function ResultCardLoading() {
                             active
                             paragraph={{
                                 rows: 1,
-                                width: 200,
                             }}
                             title={false}
                         />
@@ -39,7 +38,6 @@ function ResultCardLoading() {
                             active
                             paragraph={{
                                 rows: 1,
-                                width: 325,
                             }}
                             title={false}
                         />
